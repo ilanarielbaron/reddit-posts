@@ -1,15 +1,34 @@
 import React from "react";
-import styled from "styled-components";
-import { PostContainer, PostFooter, PostImage, PostInfo, PostLayout } from "./styled";
+import { useDispatch } from "react-redux";
+import { TextButton } from "../../../../components/TextButton";
+import { dismissPostRequest } from "../../../../store/posts/actions";
+import {
+  PostContainer,
+  PostFooter,
+  PostImage,
+  PostInfo,
+  PostLayout,
+} from "./styled";
 
 interface PostItemProps {
   post: IPost;
+  selectPost: (post: IPost) => void;
 }
 
-export const PostItem = ({ post }: PostItemProps) => {
+export const PostItem = ({ post, selectPost }: PostItemProps) => {
+  const dispatch = useDispatch();
+
+  const onClick = () => {
+    dispatch(dismissPostRequest({ postsToDelete: [post] }));
+  };
+
   return (
     <PostContainer>
-      <PostLayout>
+      <PostLayout
+        onClick={() => {
+          selectPost(post);
+        }}
+      >
         <PostInfo>
           <h3>{post.title}</h3>
           <p>{`Public by ${post.author} - ${post.entryDate} hours ago`}</p>
@@ -21,18 +40,8 @@ export const PostItem = ({ post }: PostItemProps) => {
       <PostFooter>
         <span>{`${post.commentsCount} comments`}</span>
         {post.isRead && <span className="read">Visited</span>}
-        <TextButton>Dismiss</TextButton>
+        <TextButton onClick={onClick}>Dismiss</TextButton>
       </PostFooter>
     </PostContainer>
   );
 };
-
-const TextButton = styled.button`
-  background: none;
-  border: none;
-  
-  &:hover {
-    color: ${props => props.theme.colors.secondary}
-  }
-`
-

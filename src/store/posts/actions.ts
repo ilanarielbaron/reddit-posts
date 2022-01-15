@@ -1,9 +1,12 @@
 import {
+  DISMISS_POSTS_REQUEST,
   FETCH_POSTS_FAILURE,
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
 } from './actionTypes';
 import {
+  DismissPostsRequest,
+  DismissPostsRequestPayload,
   FetchPostsFailure,
   FetchPostsFailurePayload,
   FetchPostsRequest,
@@ -30,5 +33,12 @@ export const fetchPostsFailure = (
   payload: FetchPostsFailurePayload,
 ): FetchPostsFailure => ({
   type: FETCH_POSTS_FAILURE,
+  payload,
+});
+
+export const dismissPostRequest = (
+  payload: DismissPostsRequestPayload,
+): DismissPostsRequest => ({
+  type: DISMISS_POSTS_REQUEST,
   payload,
 });

@@ -2,7 +2,8 @@ import {
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
   FETCH_POSTS_FAILURE,
-} from './actionTypes';
+  DISMISS_POSTS_REQUEST,
+} from "./actionTypes";
 
 export interface PostsState {
   posts: IPost[];
@@ -11,8 +12,7 @@ export interface PostsState {
 }
 
 export interface FetchPostsRequestPayload {
-  isFirstFetch: boolean;
-  after?: string;
+  posts?: IPost[];
 }
 
 export interface FetchPostsSuccessPayload {
@@ -21,6 +21,10 @@ export interface FetchPostsSuccessPayload {
 
 export interface FetchPostsFailurePayload {
   error: string;
+}
+
+export interface DismissPostsRequestPayload {
+  postsToDelete: IPost[];
 }
 
 export interface FetchPostsRequest {
@@ -38,7 +42,13 @@ export type FetchPostsFailure = {
   payload: FetchPostsFailurePayload;
 };
 
+export interface DismissPostsRequest {
+  type: typeof DISMISS_POSTS_REQUEST;
+  payload: DismissPostsRequestPayload;
+}
+
 export type PostsActions =
   | FetchPostsRequest
   | FetchPostsSuccess
   | FetchPostsFailure
+  | DismissPostsRequest;

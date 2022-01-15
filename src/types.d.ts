@@ -1,4 +1,5 @@
 interface IPost {
+  index: number;
   title: string;
   author: string;
   entryDate: string;

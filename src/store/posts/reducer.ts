@@ -1,10 +1,11 @@
 import {
+  DISMISS_POSTS_REQUEST,
   FETCH_POSTS_FAILURE,
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
-} from './actionTypes';
+} from "./actionTypes";
 
-import { PostsActions, PostsState } from './types';
+import { PostsActions, PostsState } from "./types";
 
 export const initialState: PostsState = {
   pending: false,
@@ -31,6 +32,18 @@ const reducer = (state = initialState, action: PostsActions) => {
         ...state,
         pending: false,
         error: action.payload.error,
+      };
+
+    case DISMISS_POSTS_REQUEST:
+      const newPostList = [...state.posts];
+
+      action.payload.postsToDelete.forEach((postToDelete) => {
+        newPostList[postToDelete.index].disable = true;
+      });
+
+      return {
+        ...state,
+        posts: newPostList,
       };
     default:
       return {

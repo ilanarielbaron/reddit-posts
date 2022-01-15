@@ -6,7 +6,12 @@ import { FETCH_POSTS_REQUEST } from "./actionTypes";
 import { parseResponse } from "./utils";
 
 export const fetchPosts = async (payload: FetchPostsRequestPayload) => {
-  const { after, isFirstFetch } = payload;
+  const { posts } = payload;
+  const postsCount = posts ? posts.length : 0;
+  const isFirstFetch = postsCount === 0;
+
+  const after = postsCount > 0 && posts && posts[postsCount - 1].fullname;
+
   const qty = isFirstFetch
     ? process.env.REACT_APP_N_POSTS
     : process.env.REACT_APP_M_POSTS;
@@ -25,7 +30,7 @@ export const fetchPosts = async (payload: FetchPostsRequestPayload) => {
       throw new Error(data.message ?? "genericError");
     }
 
-    const postParsed = parseResponse(data);
+    const postParsed = parseResponse(data, postsCount);
 
     return postParsed;
   } catch (e: any) {

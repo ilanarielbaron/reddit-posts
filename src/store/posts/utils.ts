@@ -1,8 +1,11 @@
 // Parse the Reddit API response to IPost type
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const parseResponse = (response: { data: { children: any[] } }) => {
+export const parseResponse = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return response?.data?.children?.map((post: any): IPost => {
+  response: { data: { children: any[] } },
+  postsCount: number
+) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return response?.data?.children?.map((post: any, index: number): IPost => {
     const {
       title,
       name: fullname,
@@ -11,12 +14,13 @@ export const parseResponse = (response: { data: { children: any[] } }) => {
       thumbnail,
       num_comments: commentsCount,
     } = post.data;
- 
+
     const hoursAgoCreated = Math.round(
       (Date.now() - created * 1000) / (60000 * 60)
     );
 
     return {
+      index: postsCount + index,
       title,
       fullname,
       author,
