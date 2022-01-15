@@ -2,9 +2,9 @@ import {
   FETCH_POSTS_FAILURE,
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
-} from "./actionTypes";
+} from './actionTypes';
 
-import { PostsActions, PostsState } from "./types";
+import { PostsActions, PostsState } from './types';
 
 export const initialState: PostsState = {
   pending: false,

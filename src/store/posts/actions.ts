@@ -2,7 +2,7 @@ import {
   FETCH_POSTS_FAILURE,
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
-} from "./actionTypes";
+} from './actionTypes';
 import {
   FetchPostsFailure,
   FetchPostsFailurePayload,
@@ -10,24 +10,24 @@ import {
   FetchPostsRequestPayload,
   FetchPostsSuccess,
   FetchPostsSuccessPayload,
-} from "./types";
+} from './types';
 
 export const fetchPostsRequest = (
-  payload: FetchPostsRequestPayload
+  payload: FetchPostsRequestPayload,
 ): FetchPostsRequest => ({
   type: FETCH_POSTS_REQUEST,
   payload,
 });
 
 export const fetchPostsSuccess = (
-  payload: FetchPostsSuccessPayload
+  payload: FetchPostsSuccessPayload,
 ): FetchPostsSuccess => ({
   type: FETCH_POSTS_SUCCESS,
   payload,
 });
 
 export const fetchPostsFailure = (
-  payload: FetchPostsFailurePayload
+  payload: FetchPostsFailurePayload,
 ): FetchPostsFailure => ({
   type: FETCH_POSTS_FAILURE,
   payload,
