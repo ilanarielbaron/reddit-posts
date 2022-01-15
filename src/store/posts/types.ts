@@ -12,6 +12,7 @@ export interface IPost {
   commentsCount: number;
   isRead: boolean;
   disable: boolean;
+  fullname: string;
 }
 
 export interface PostsState {

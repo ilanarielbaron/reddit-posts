@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
 import { theme } from "./theme";
 
@@ -10,7 +11,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Switch>
-          <Route component={Home} />
+          <Layout>
+            <Route component={Home} />
+          </Layout>
         </Switch>
       </Router>
     </ThemeProvider>

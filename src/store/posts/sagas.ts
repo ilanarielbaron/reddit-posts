@@ -3,6 +3,7 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { FetchPostsRequestPayload, IPost } from "./types";
 import { fetchPostsFailure, fetchPostsSuccess } from "./actions";
 import { FETCH_POSTS_REQUEST } from "./actionTypes";
+import { parseResponse } from "./utils";
 
 export const fetchPosts = async (payload: FetchPostsRequestPayload) => {
   const { after, isFirstFetch } = payload;
@@ -15,14 +16,18 @@ export const fetchPosts = async (payload: FetchPostsRequestPayload) => {
   if (!isFirstFetch) params.push(`after=${after}`);
 
   try {
-    const response = await fetch(`${url}${params.join("&")}`, { method: "GET" });
+    const response = await fetch(`${url}${params.join("&")}`, {
+      method: "GET",
+    });
     const data = await response.json();
 
     if (data.error) {
       throw new Error(data.message ?? "genericError");
     }
 
-    return data.data.children;
+    const postParsed = parseResponse(data);
+
+    return postParsed;
   } catch (e: any) {
     throw new Error(e.message ?? "genericError");
   }
