@@ -1,20 +1,17 @@
-import { createSelector } from 'reselect';
-import { AppState } from '../rootReducer';
+import { createSelector } from "reselect";
+import { AppState } from "../rootReducer";
 
-// @ts-expect-error-never-type
-export const getPending = (state: AppState) => state.posts.pending;
+export const getPending = (state: AppState) => state.postsState.pending;
 
-// @ts-expect-error-never-type
-export const getPosts = (state: AppState) => state.posts.posts;
+export const getPosts = (state: AppState) => state.postsState.posts;
 
-// @ts-expect-error-never-type
-export const getError = (state: AppState) => state.posts.error;
+export const getError = (state: AppState) => state.postsState.error;
 
 export const getPostsSelector = createSelector(getPosts, (posts) => posts);
 
 export const getPendingSelector = createSelector(
   getPending,
-  (pending) => pending,
+  (pending) => pending
 );
 
 export const getErrorSelector = createSelector(getError, (error) => error);

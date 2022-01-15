@@ -11,9 +11,8 @@ export const Footer = () => {
 
 const FooterContainer = styled.div`
   text-align: center;
-  border-top: 1px solid ${(props) => props.theme.colors.secondary};
-  position: absolute;
-  bottom: 0;
+  position: relative;
+  bottom: 100%;
   width: 100%;
   padding: 20px 0;
 

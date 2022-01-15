@@ -4,17 +4,6 @@ import {
   FETCH_POSTS_FAILURE,
 } from './actionTypes';
 
-export interface IPost {
-  title: string;
-  author: string;
-  entryDate: string;
-  image?: string;
-  commentsCount: number;
-  isRead: boolean;
-  disable: boolean;
-  fullname: string;
-}
-
 export interface PostsState {
   posts: IPost[];
   pending: boolean;

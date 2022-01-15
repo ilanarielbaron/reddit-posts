@@ -1,5 +1,3 @@
-import { IPost } from "./types";
-
 // Parse the Reddit API response to IPost type
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const parseResponse = (response: { data: { children: any[] } }) => {

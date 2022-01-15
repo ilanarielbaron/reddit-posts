@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { FetchPostsRequestPayload, IPost } from "./types";
+import { FetchPostsRequestPayload } from "./types";
 import { fetchPostsFailure, fetchPostsSuccess } from "./actions";
 import { FETCH_POSTS_REQUEST } from "./actionTypes";
 import { parseResponse } from "./utils";

@@ -20,11 +20,10 @@ const reducer = (state = initialState, action: PostsActions) => {
         pending: true,
       };
     case FETCH_POSTS_SUCCESS:
-      console.log(action)
       return {
         ...state,
         pending: false,
-        posts: [...state.posts, action.payload.newPosts],
+        posts: [...state.posts, ...action.payload.newPosts],
         error: null,
       };
     case FETCH_POSTS_FAILURE:
