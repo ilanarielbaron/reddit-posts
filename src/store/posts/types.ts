@@ -21,12 +21,12 @@ export interface PostsState {
 }
 
 export interface FetchPostsRequestPayload {
-  count: number;
-  after: string;
+  isFirstFetch: boolean;
+  after?: string;
 }
 
 export interface FetchPostsSuccessPayload {
-  posts: IPost[];
+  newPosts: IPost[];
 }
 
 export interface FetchPostsFailurePayload {
