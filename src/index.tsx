@@ -1,15 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { IntlProvider } from "react-intl";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./store";
+import { messages } from "./lang/messages";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <IntlProvider locale="en" defaultLocale="en" messages={messages["en"]}>
+        <App />
+      </IntlProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

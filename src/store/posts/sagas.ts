@@ -18,6 +18,10 @@ export const fetchPosts = async (payload: FetchPostsRequestPayload) => {
     const response = await fetch(`${url}${params.join("&")}`, { method: "GET" });
     const data = await response.json();
 
+    if (data.error) {
+      throw new Error(data.message ?? "genericError");
+    }
+
     return data.data.children;
   } catch (e: any) {
     throw new Error(e.message ?? "genericError");

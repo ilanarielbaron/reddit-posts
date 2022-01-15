@@ -10,7 +10,7 @@ export interface IPost {
   entryDate: string;
   image?: string;
   commentsCount: number;
-  unreadStatus: boolean;
+  isRead: boolean;
   disable: boolean;
 }
 
