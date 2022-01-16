@@ -1,7 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { TextButton } from "../../../../components/TextButton";
-import { dismissPostRequest } from "../../../../store/posts/actions";
+import {
+  dismissPostRequest,
+  readPostRequest,
+} from "../../../../store/posts/actions";
 import {
   PostContainer,
   PostFooter,
@@ -18,7 +21,7 @@ interface PostItemProps {
 export const PostItem = ({ post, selectPost }: PostItemProps) => {
   const dispatch = useDispatch();
 
-  const onClick = () => {
+  const onDismiss = () => {
     dispatch(dismissPostRequest({ postsToDelete: [post] }));
   };
 
@@ -27,6 +30,7 @@ export const PostItem = ({ post, selectPost }: PostItemProps) => {
       <PostLayout
         onClick={() => {
           selectPost(post);
+          dispatch(readPostRequest({ postToRead: post }));
         }}
       >
         <PostInfo>
@@ -40,7 +44,7 @@ export const PostItem = ({ post, selectPost }: PostItemProps) => {
       <PostFooter>
         <span>{`${post.commentsCount} comments`}</span>
         {post.isRead && <span className="read">Visited</span>}
-        <TextButton onClick={onClick}>Dismiss</TextButton>
+        <TextButton onClick={onDismiss}>Dismiss</TextButton>
       </PostFooter>
     </PostContainer>
   );

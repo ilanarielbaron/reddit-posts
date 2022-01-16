@@ -3,6 +3,7 @@ import {
   FETCH_POSTS_SUCCESS,
   FETCH_POSTS_FAILURE,
   DISMISS_POSTS_REQUEST,
+  READ_POST_REQUEST,
 } from "./actionTypes";
 
 export interface PostsState {
@@ -27,6 +28,10 @@ export interface DismissPostsRequestPayload {
   postsToDelete: IPost[];
 }
 
+export interface ReadPostRequestPayload {
+  postToRead: IPost;
+}
+
 export interface FetchPostsRequest {
   type: typeof FETCH_POSTS_REQUEST;
   payload: FetchPostsRequestPayload;
@@ -47,8 +52,14 @@ export interface DismissPostsRequest {
   payload: DismissPostsRequestPayload;
 }
 
+export interface ReadPostRequest {
+  type: typeof READ_POST_REQUEST;
+  payload: ReadPostRequestPayload;
+}
+
 export type PostsActions =
   | FetchPostsRequest
   | FetchPostsSuccess
   | FetchPostsFailure
-  | DismissPostsRequest;
+  | DismissPostsRequest
+  | ReadPostRequest;

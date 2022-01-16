@@ -3,6 +3,7 @@ import {
   FETCH_POSTS_FAILURE,
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
+  READ_POST_REQUEST,
 } from './actionTypes';
 import {
   DismissPostsRequest,
@@ -13,6 +14,8 @@ import {
   FetchPostsRequestPayload,
   FetchPostsSuccess,
   FetchPostsSuccessPayload,
+  ReadPostRequest,
+  ReadPostRequestPayload,
 } from './types';
 
 export const fetchPostsRequest = (
@@ -40,5 +43,12 @@ export const dismissPostRequest = (
   payload: DismissPostsRequestPayload,
 ): DismissPostsRequest => ({
   type: DISMISS_POSTS_REQUEST,
+  payload,
+});
+
+export const readPostRequest = (
+  payload: ReadPostRequestPayload,
+): ReadPostRequest => ({
+  type: READ_POST_REQUEST,
   payload,
 });

@@ -7,6 +7,8 @@ import { parseResponse } from "./utils";
 
 export const fetchPosts = async (payload: FetchPostsRequestPayload) => {
   const { posts } = payload;
+
+  //Checking if is the first fetch to load N or load M after the last post
   const postsCount = posts ? posts.length : 0;
   const isFirstFetch = postsCount === 0;
 

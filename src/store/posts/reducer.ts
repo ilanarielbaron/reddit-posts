@@ -3,6 +3,7 @@ import {
   FETCH_POSTS_FAILURE,
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
+  READ_POST_REQUEST,
 } from "./actionTypes";
 
 import { PostsActions, PostsState } from "./types";
@@ -44,6 +45,15 @@ const reducer = (state = initialState, action: PostsActions) => {
       return {
         ...state,
         posts: newPostList,
+      };
+    case READ_POST_REQUEST:
+      const newPostListWithRead = [...state.posts];
+
+      newPostListWithRead[action.payload.postToRead.index].isRead = true;
+
+      return {
+        ...state,
+        posts: newPostListWithRead,
       };
     default:
       return {
