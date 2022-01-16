@@ -1,9 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 import { TextButton } from "../../../../components/TextButton";
 import loadIcon from "../../../../assets/load.png";
 import removeIcon from "../../../../assets/remove.png";
 import layoutIcon from "../../../../assets/layout.png";
-import styled from "styled-components";
 import { devices } from "../../../../utils/responsive";
 
 interface ActionButtonsProps {
@@ -35,7 +35,7 @@ export const ActionButtons = ({
       }}
     >
       <img src={layoutIcon} alt="layout" />
-      <span>{splitLayout ? "Simple Layout" : "Split Layout"}</span>
+      <span>{splitLayout ? "Simplify Layout" : "Split Layout"}</span>
     </TextButton>
   </Container>
 );

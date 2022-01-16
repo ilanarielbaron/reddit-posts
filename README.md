@@ -1,5 +1,9 @@
 # Reddit Challenge
 
+## Live site link
+
+https://reddit-challenge.netlify.app/
+
 ## Notes
 
 - I used create react app with typescript template because Next JS has more features for performance, SEO and production sites. This way is faster for me to do a challenge application.
@@ -8,3 +12,4 @@
 - First i will do the priority functionality and layout and then the secondary like animations / transitions.
 - For layout and styles i implemented the mobile first way
 - Added tests for reducer, sagas and selectors, i prioritized that rather than component testing first.
+- For the styles i did a simple UI very easy to manipulate with light backgrounds and big font sizes.
