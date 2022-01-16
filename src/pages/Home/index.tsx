@@ -1,32 +1,26 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  CSSTransition,
-  TransitionGroup,
-} from "react-transition-group";
-import { TextButton } from "../../components/TextButton";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import {
   dismissPostRequest,
   fetchPostsRequest,
 } from "../../store/posts/actions";
-import { DismissAll, PostList } from "./styled";
+import { Container, DismissAll, PostList } from "./styled";
 import { getPostsSelector } from "../../store/posts/selectors";
 import { FullPost } from "./components/FullPost";
 import { PostItem } from "./components/PostItem";
+import { ActionButtons } from "./components/ActionButtons";
 
 export const Home = () => {
   const posts = useSelector(getPostsSelector);
   const dispatch = useDispatch();
 
   const [postSelected, selectPost] = useState<IPost | undefined>(undefined);
-
-  // Show the full post if one is selected
-  if (postSelected) {
-    return <FullPost post={postSelected} selectPost={selectPost} />;
-  }
+  const [splitLayout, setSplitLayout] = useState(false);
 
   // Soft delete for all visible posts
   const onDismiss = () => {
+    selectPost(undefined);
     dispatch(
       dismissPostRequest({
         postsToDelete: posts.filter((post) => !post.disable),
@@ -39,8 +33,16 @@ export const Home = () => {
   };
 
   return (
-    <>
-      <PostList>
+    <Container
+      className={
+        splitLayout && !!postSelected ? "split-layout" : "simple-layout"
+      }
+    >
+      <PostList
+        className={
+          !!postSelected ? (!splitLayout ? "hidden" : "hidden-mobile") : "flex"
+        }
+      >
         <TransitionGroup>
           {posts?.map((post: IPost) => {
             if (!post.disable) {
@@ -56,13 +58,24 @@ export const Home = () => {
             }
           })}
         </TransitionGroup>
+        <DismissAll>
+          <ActionButtons
+            splitLayout={splitLayout}
+            setSplitLayout={setSplitLayout}
+            onLoadMore={onLoadMore}
+            onDismiss={onDismiss}
+          />
+        </DismissAll>
       </PostList>
-      <TextButton className="uppercase" onClick={onLoadMore}>
-        Load More
-      </TextButton>
-      <DismissAll>
-        <TextButton onClick={onDismiss}>Dismiss All</TextButton>
-      </DismissAll>
-    </>
+
+      <CSSTransition
+        timeout={500}
+        classNames="item"
+        in={!!postSelected}
+        unmountOnExit
+      >
+        <FullPost post={postSelected} selectPost={selectPost} />
+      </CSSTransition>
+    </Container>
   );
 };
