@@ -12,7 +12,7 @@ export const Footer = () => {
 const FooterContainer = styled.div`
   text-align: center;
   position: relative;
-  bottom: 100%;
+  bottom: 80%;
   width: 100%;
   padding: 20px 0;
 

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  CSSTransition,
+  TransitionGroup,
+} from "react-transition-group";
 import { TextButton } from "../../components/TextButton";
 import {
   dismissPostRequest,
   fetchPostsRequest,
 } from "../../store/posts/actions";
 import { DismissAll, PostList } from "./styled";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getPostsSelector } from "../../store/posts/selectors";
 import { FullPost } from "./components/FullPost";
 import { PostItem } from "./components/PostItem";
@@ -47,23 +50,18 @@ export const Home = () => {
                   timeout={300}
                   classNames="item"
                 >
-                  <PostItem
-                    post={post}
-                    selectPost={selectPost}
-                  />
+                  <PostItem post={post} selectPost={selectPost} />
                 </CSSTransition>
               );
             }
           })}
         </TransitionGroup>
       </PostList>
-      <TextButton onClick={onLoadMore}>Load More</TextButton>
+      <TextButton className="uppercase" onClick={onLoadMore}>
+        Load More
+      </TextButton>
       <DismissAll>
-        <TextButton
-          onClick={onDismiss}
-        >
-          Dismiss All
-        </TextButton>
+        <TextButton onClick={onDismiss}>Dismiss All</TextButton>
       </DismissAll>
     </>
   );

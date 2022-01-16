@@ -1,8 +1,13 @@
 import styled from "styled-components";
+import { devices } from "../../../../utils/responsive";
 
 export const PostContainer = styled.div`
   padding: 5px;
   border-bottom: 1px solid ${(props) => props.theme.colors.secondary};
+
+  @media ${devices.laptop} {
+    padding: 10px 10vh;
+  }
 
   &.item-enter {
     opacity: 0;
@@ -26,6 +31,7 @@ export const PostContainer = styled.div`
 export const PostLayout = styled.div`
   margin-bottom: 15px;
   display: flex;
+  cursor: pointer
 `;
 
 export const PostInfo = styled.div`

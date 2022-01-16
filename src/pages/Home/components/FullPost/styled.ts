@@ -1,8 +1,27 @@
 import styled from "styled-components";
+import { devices } from "../../../../utils/responsive";
 
 export const PostContainer = styled.div`
   padding: 5px;
   border-bottom: 1px solid ${(props) => props.theme.colors.secondary};
+  .my-node-enter {
+    opacity: 0;
+  }
+  .my-node-enter-active {
+    opacity: 1;
+    transition: opacity 200ms;
+  }
+  .my-node-exit {
+    opacity: 1;
+  }
+  .my-node-exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+  
+  @media ${devices.laptop} {
+    padding: 10px 10vh;
+  }
 `;
 
 export const PostInfo = styled.div`

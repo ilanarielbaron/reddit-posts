@@ -7,3 +7,4 @@
 - In my first version i want to make it simple and fetch every time the user require for more post, then i want to get the next page already fetched when the user requires more.
 - First i will do the priority functionality and layout and then the secondary like animations / transitions.
 - For layout and styles i implemented the mobile first way
+- Added tests for reducer, sagas and selectors, i prioritized that rather than component testing first.
