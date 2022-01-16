@@ -8,7 +8,7 @@ export const DismissAll = styled.div`
   padding: 20px;
   background: #fff;
   opacity: 0.9;
-  width: 100%;
+  width: calc(100% - 20px);
   z-index: 1;
 `;
 
@@ -17,7 +17,8 @@ export const PostList = styled.div`
   display: flex;
   flex-direction: column;
 
-  &.hidden-mobile, &.hidden {
+  &.hidden-mobile,
+  &.hidden {
     display: none;
   }
   @media ${devices.tablet} {
@@ -43,11 +44,9 @@ export const Container = styled.div`
   }
 `;
 
-
 export const ErrorMessage = styled.p`
   display: block;
   width: 100%;
   z-index: 1;
   color: red;
 `;
-
