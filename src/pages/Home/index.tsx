@@ -5,14 +5,21 @@ import {
   dismissPostRequest,
   fetchPostsRequest,
 } from "../../store/posts/actions";
-import { Container, DismissAll, PostList } from "./styled";
-import { getPostsSelector } from "../../store/posts/selectors";
+import { Container, DismissAll, ErrorMessage, PostList } from "./styled";
+import {
+  getErrorSelector,
+  getPendingSelector,
+  getPostsSelector,
+} from "../../store/posts/selectors";
 import { FullPost } from "./components/FullPost";
 import { PostItem } from "./components/PostItem";
 import { ActionButtons } from "./components/ActionButtons";
+import { Spinner } from "../../components/Spinner";
 
 export const Home = () => {
   const posts = useSelector(getPostsSelector);
+  const loading = useSelector(getPendingSelector);
+  const error = useSelector(getErrorSelector);
   const dispatch = useDispatch();
 
   const [postSelected, selectPost] = useState<IPost | undefined>(undefined);
@@ -31,6 +38,9 @@ export const Home = () => {
   const onLoadMore = () => {
     dispatch(fetchPostsRequest({ posts }));
   };
+
+  // Spinner in all the page if is the first fetch
+  if (loading && posts.length === 0) return <Spinner />;
 
   return (
     <Container
@@ -58,6 +68,7 @@ export const Home = () => {
             }
           })}
         </TransitionGroup>
+        {loading && <Spinner />}
         <DismissAll>
           <ActionButtons
             splitLayout={splitLayout}
@@ -65,6 +76,7 @@ export const Home = () => {
             onLoadMore={onLoadMore}
             onDismiss={onDismiss}
           />
+          {error && <ErrorMessage>{error}</ErrorMessage>}
         </DismissAll>
       </PostList>
 

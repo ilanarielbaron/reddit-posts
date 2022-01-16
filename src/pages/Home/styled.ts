@@ -42,3 +42,12 @@ export const Container = styled.div`
     }
   }
 `;
+
+
+export const ErrorMessage = styled.p`
+  display: block;
+  width: 100%;
+  z-index: 1;
+  color: red;
+`;
+

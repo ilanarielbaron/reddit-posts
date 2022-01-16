@@ -15,7 +15,7 @@ export const ActionButtons = ({
   onLoadMore,
 }: ActionButtonsProps) => {
   return (
-    <>
+    <div>
       <TextButton className="uppercase" onClick={onDismiss}>
         Dismiss All
       </TextButton>
@@ -30,6 +30,6 @@ export const ActionButtons = ({
       >
         {splitLayout ? "Simple Layout" : "Split Layout"}
       </TextButton>
-    </>
+    </div>
   );
 };
