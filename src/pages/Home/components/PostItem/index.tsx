@@ -13,7 +13,7 @@ import {
   PostLayout,
 } from "./styled";
 
-interface PostItemProps {
+export interface PostItemProps {
   post: IPost;
   selectPost: (post: IPost) => void;
 }
@@ -35,7 +35,9 @@ export const PostItem = ({ post, selectPost }: PostItemProps) => {
       >
         <PostInfo>
           <h3>{post.title}</h3>
-          <p>{`Public by ${post.author} - ${post.entryDate} hours ago`}</p>
+          <p>
+            {`Public by ${post.author} - ${post.entryDate} hours ago`}
+          </p>
         </PostInfo>
         <PostImage>
           <img src={post.image} alt="postImage" />

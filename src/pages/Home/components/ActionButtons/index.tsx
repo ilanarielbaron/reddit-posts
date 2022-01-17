@@ -6,7 +6,7 @@ import removeIcon from "../../../../assets/remove.png";
 import layoutIcon from "../../../../assets/layout.png";
 import { devices } from "../../../../utils/responsive";
 
-interface ActionButtonsProps {
+export interface ActionButtonsProps {
   onLoadMore: () => void;
   onDismiss: () => void;
   setSplitLayout: (value: React.SetStateAction<boolean>) => void;
@@ -24,7 +24,11 @@ export const ActionButtons = ({
       <img src={removeIcon} alt="remove" />
       <span>Dismiss All</span>
     </TextButton>
-    <TextButton className="uppercase" onClick={onLoadMore}>
+    <TextButton
+      data-testid="load-button"
+      className="uppercase"
+      onClick={onLoadMore}
+    >
       <img src={loadIcon} alt="load" />
       <span>Load More</span>
     </TextButton>
@@ -35,7 +39,9 @@ export const ActionButtons = ({
       }}
     >
       <img src={layoutIcon} alt="layout" />
-      <span>{splitLayout ? "Simplify Layout" : "Split Layout"}</span>
+      <span data-testid="layout-element">
+        {splitLayout ? "Simplify Layout" : "Split Layout"}
+      </span>
     </TextButton>
   </Container>
 );

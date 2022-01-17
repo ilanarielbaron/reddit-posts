@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { devices } from "../../utils/responsive";
 
-export const DismissAll = styled.div`
+export const BottomNav = styled.div`
   position: fixed;
   text-align: center;
   bottom: 0;

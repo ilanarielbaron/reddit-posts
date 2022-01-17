@@ -5,7 +5,7 @@ import {
   dismissPostRequest,
   fetchPostsRequest,
 } from "../../store/posts/actions";
-import { Container, DismissAll, ErrorMessage, PostList } from "./styled";
+import { Container, BottomNav, ErrorMessage, PostList } from "./styled";
 import {
   getErrorSelector,
   getPendingSelector,
@@ -69,7 +69,7 @@ export const Home = () => {
           })}
         </TransitionGroup>
         {loading && <Spinner />}
-        <DismissAll>
+        <BottomNav>
           <ActionButtons
             splitLayout={splitLayout}
             setSplitLayout={setSplitLayout}
@@ -77,7 +77,7 @@ export const Home = () => {
             onDismiss={onDismiss}
           />
           {error && <ErrorMessage>{error}</ErrorMessage>}
-        </DismissAll>
+        </BottomNav>
       </PostList>
 
       <CSSTransition
