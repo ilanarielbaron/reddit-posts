@@ -15,6 +15,7 @@ import { FullPost } from "./components/FullPost";
 import { PostItem } from "./components/PostItem";
 import { ActionButtons } from "./components/ActionButtons";
 import { Spinner } from "../../components/Spinner";
+import { InfiniteScroll } from "../../components/InfiniteScroll";
 
 export const Home = () => {
   const posts = useSelector(getPostsSelector);
@@ -53,33 +54,44 @@ export const Home = () => {
           !!postSelected ? (!splitLayout ? "hidden" : "hidden-mobile") : "flex"
         }
       >
-        <TransitionGroup>
-          {posts?.map((post: IPost) => {
-            if (!post.disable) {
-              return (
-                <CSSTransition
-                  key={`${post.fullname}_${post.author}`}
-                  timeout={300}
-                  classNames="item"
-                >
-                  <PostItem post={post} selectPost={selectPost} />
-                </CSSTransition>
-              );
-            }
-          })}
-        </TransitionGroup>
+        {/* Post List with infinite scroll */}
+        <InfiniteScroll
+          hasMoreData={true}
+          isLoading={loading}
+          onBottomHit={onLoadMore}
+          loadOnMount={true}
+        >
+          <TransitionGroup>
+            {posts?.map((post: IPost) => {
+              if (!post.disable) {
+                return (
+                  <CSSTransition
+                    key={`${post.fullname}_${post.author}`}
+                    timeout={300}
+                    classNames="item"
+                  >
+                    <PostItem post={post} selectPost={selectPost} />
+                  </CSSTransition>
+                );
+              }
+            })}
+          </TransitionGroup>
+        </InfiniteScroll>
         {loading && <Spinner />}
+
+        {/* Fixed bottom nav */}
         <BottomNav>
           <ActionButtons
+            onLoadMore={onLoadMore}
             splitLayout={splitLayout}
             setSplitLayout={setSplitLayout}
-            onLoadMore={onLoadMore}
             onDismiss={onDismiss}
           />
           {error && <ErrorMessage>{error}</ErrorMessage>}
         </BottomNav>
       </PostList>
 
+      {/* Full Post displayed only with simple layout */}
       <CSSTransition
         timeout={500}
         classNames="item"
