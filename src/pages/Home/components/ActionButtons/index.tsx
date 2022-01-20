@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { TextButton } from "../../../../components/TextButton";
-import loadIcon from "../../../../assets/load.png";
-import removeIcon from "../../../../assets/remove.png";
-import layoutIcon from "../../../../assets/layout.png";
 import { devices } from "../../../../utils/responsive";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faSync } from "@fortawesome/free-solid-svg-icons";
+import { faThLarge } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface ActionButtonsProps {
   onLoadMore: () => void;
@@ -21,7 +22,7 @@ export const ActionButtons = ({
 }: ActionButtonsProps) => (
   <Container>
     <TextButton className="uppercase icon" onClick={onDismiss}>
-      <img src={removeIcon} alt="remove" />
+      <FontAwesomeIcon icon={faTrash} size="lg" />
       <span>Dismiss All</span>
     </TextButton>
     <TextButton
@@ -29,7 +30,7 @@ export const ActionButtons = ({
       className="uppercase icon"
       onClick={onLoadMore}
     >
-      <img src={loadIcon} alt="load" />
+      <FontAwesomeIcon icon={faSync} size="lg" />
       <span>Load More</span>
     </TextButton>
     <TextButton
@@ -38,7 +39,7 @@ export const ActionButtons = ({
         setSplitLayout((prevValue) => !prevValue);
       }}
     >
-      <img src={layoutIcon} alt="layout" />
+      <FontAwesomeIcon icon={faThLarge} size="lg" />
       <span data-testid="layout-element">
         {splitLayout ? "Simplify Layout" : "Split Layout"}
       </span>

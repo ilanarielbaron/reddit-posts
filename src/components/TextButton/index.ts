@@ -18,6 +18,10 @@ export const TextButton = styled.button`
     &:hover {
       background: #E8E8E8;
     }
+
+    span {
+      margin-top: 5px;
+    }
   }
 
   &.split {

@@ -13,6 +13,7 @@ import {
   PostLayout,
 } from "./styled";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface PostItemProps {
@@ -40,20 +41,23 @@ export const PostItem = ({ post, selectPost }: PostItemProps) => {
           <h3>{post.title}</h3>
           <p>{`Public by ${post.author} - ${post.entryDate} hours ago`}</p>
         </PostInfo>
-        <PostImage>
-          <img src={post.image} alt="postImage" />
-        </PostImage>
+        {post.image?.includes("http") && (
+          <PostImage>
+            <img src={post.image} alt="postImage" />
+          </PostImage>
+        )}
       </PostLayout>
       <PostFooter>
         <span>{`${post.commentsCount} comments`}</span>
-        {post.isRead && <span className="read">Visited</span>}
+        {post.isRead && (
+          <div className="read">
+            <FontAwesomeIcon icon={faCheck} size="lg" /> Visited
+          </div>
+        )}
         <TextButton className="icon" onClick={onDismiss}>
-          <FontAwesomeIcon icon={faTrash} size="lg" />{" "}
-          Dismiss
+          <FontAwesomeIcon icon={faTrash} size="lg" /> Dismiss
         </TextButton>
       </PostFooter>
     </PostContainer>
   );
 };
-
-

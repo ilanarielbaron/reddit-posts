@@ -47,7 +47,7 @@ export const PostInfo = styled.div`
   margin-right: 1%;
 
   h3 {
-    color: #265B5A;
+    color: #265b5a;
     margin: 10px 0;
   }
 
@@ -69,12 +69,13 @@ export const PostFooter = styled.div`
   display: flex;
   font-size: 14px;
   justify-content: space-between;
-  
+  align-items: center;
+
   img {
     width: 20px;
   }
 
   .read {
-    color: blue;
+    color: #265b5a;
   }
 `;

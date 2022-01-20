@@ -9,6 +9,17 @@ export const BottomNav = styled.div`
   background: #fff;
   opacity: 0.9;
   z-index: 1;
+
+  &.hidden-mobile,
+  &.hidden {
+    display: none;
+  }
+
+  @media ${devices.tablet} {
+    &.hidden-mobile {
+      display: block;
+    }
+  }
 `;
 
 export const PostList = styled.div`
@@ -24,6 +35,10 @@ export const PostList = styled.div`
   max-width: 800px;
   margin: auto;
 
+  .secondary {
+    color: ${(props) => props.theme.colors.secondary};
+  }
+
   @media ${devices.tablet} {
     width: 80%;
 
@@ -33,15 +48,39 @@ export const PostList = styled.div`
   }
 `;
 
+export const NoPosts = styled.span`
+  &.no-posts-enter {
+    opacity: 0;
+  }
+
+  &.no-posts-enter-active {
+    opacity: 1;
+    transition: opacity 900ms ease-in;
+  }
+
+  &.no-posts-exit {
+    opacity: 1;
+  }
+
+  &.no-posts-exit-active {
+    opacity: 0;
+    transition: opacity 900ms ease-in;
+  }
+`;
+
 export const Container = styled.div`
+  min-height: 85vh;
+
   @media ${devices.tablet} {
     &.split-layout {
       display: flex;
-      column-gap: 1%;
+      column-gap: 2%;
       padding-bottom: 50px;
+      max-width: 90%;
+      margin: auto;
 
       & > div {
-        width: 49%;
+        width: 48%;
         margin: 0;
       }
     }

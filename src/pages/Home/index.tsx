@@ -5,7 +5,7 @@ import {
   dismissPostRequest,
   fetchPostsRequest,
 } from "../../store/posts/actions";
-import { Container, BottomNav, ErrorMessage, PostList } from "./styled";
+import { Container, BottomNav, ErrorMessage, PostList, NoPosts } from "./styled";
 import {
   getErrorSelector,
   getPendingSelector,
@@ -40,16 +40,9 @@ export const Home = () => {
     dispatch(fetchPostsRequest({ posts }));
   };
 
-  // Spinner in all the page if is the first fetch
-  if (loading && posts.length === 0) return <Spinner />;
-
   return (
     <>
-      <Container
-        className={
-          splitLayout && !!postSelected ? "split-layout" : "simple-layout"
-        }
-      >
+      <Container className={splitLayout ? "split-layout" : "simple-layout"}>
         <PostList
           className={
             !!postSelected
@@ -59,6 +52,16 @@ export const Home = () => {
               : "flex"
           }
         >
+          {!loading && (
+            <CSSTransition
+              timeout={900}
+              classNames="no-posts"
+              in={posts.filter((post) => !post.disable).length === 0}
+              unmountOnExit
+            >
+              <NoPosts className="secondary">No posts here...</NoPosts>
+            </CSSTransition>
+          )}
           {/* Post List with infinite scroll */}
           <InfiniteScroll
             hasMoreData={true}
@@ -96,7 +99,11 @@ export const Home = () => {
         </CSSTransition>
       </Container>
       {/* Fixed bottom nav */}
-      <BottomNav>
+      <BottomNav
+        className={
+          !!postSelected ? (!splitLayout ? "hidden" : "hidden-mobile") : "flex"
+        }
+      >
         <ActionButtons
           onLoadMore={onLoadMore}
           splitLayout={splitLayout}
