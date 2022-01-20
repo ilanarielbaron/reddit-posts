@@ -20,20 +20,20 @@ export const ActionButtons = ({
   onLoadMore,
 }: ActionButtonsProps) => (
   <Container>
-    <TextButton className="uppercase" onClick={onDismiss}>
+    <TextButton className="uppercase icon" onClick={onDismiss}>
       <img src={removeIcon} alt="remove" />
       <span>Dismiss All</span>
     </TextButton>
     <TextButton
       data-testid="load-button"
-      className="uppercase"
+      className="uppercase icon"
       onClick={onLoadMore}
     >
       <img src={loadIcon} alt="load" />
       <span>Load More</span>
     </TextButton>
     <TextButton
-      className="uppercase split"
+      className="uppercase split icon"
       onClick={() => {
         setSplitLayout((prevValue) => !prevValue);
       }}

@@ -2,18 +2,16 @@ import styled from "styled-components";
 import { devices } from "../../utils/responsive";
 
 export const BottomNav = styled.div`
-  position: fixed;
+  position: sticky;
   text-align: center;
   bottom: 0;
-  padding: 20px;
+  padding: 20px 0;
   background: #fff;
   opacity: 0.9;
-  width: calc(100% - 20px);
   z-index: 1;
 `;
 
 export const PostList = styled.div`
-  margin: 30px 0;
   display: flex;
   flex-direction: column;
 
@@ -21,7 +19,14 @@ export const PostList = styled.div`
   &.hidden {
     display: none;
   }
+
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
+
   @media ${devices.tablet} {
+    width: 80%;
+
     &.hidden-mobile {
       display: flex;
     }
@@ -37,7 +42,6 @@ export const Container = styled.div`
 
       & > div {
         width: 49%;
-        box-shadow: -3px 0px 5px 0px rgba(171, 171, 171, 0.75);
         margin: 0;
       }
     }

@@ -2,11 +2,16 @@ import styled from "styled-components";
 import { devices } from "../../../../utils/responsive";
 
 export const PostContainer = styled.div`
-  padding: 5px;
-  border-bottom: 1px solid ${(props) => props.theme.colors.secondary};
+  border: 2px solid ${(props) => props.theme.colors.secondary};
+  margin-bottom: 10px;
+  padding: 10px 5px;
+  transition: 0.7s;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #fff;
 
   @media ${devices.laptop} {
-    padding: 10px 10vh;
+    padding: 10px 20px;
   }
 
   &.item-enter {
@@ -26,12 +31,15 @@ export const PostContainer = styled.div`
     opacity: 0;
     transition: opacity 500ms ease-in;
   }
+
+  &:hover {
+    border: 2px solid ${(props) => props.theme.colors.main};
+  }
 `;
 
 export const PostLayout = styled.div`
   margin-bottom: 15px;
   display: flex;
-  cursor: pointer
 `;
 
 export const PostInfo = styled.div`
@@ -39,6 +47,7 @@ export const PostInfo = styled.div`
   margin-right: 1%;
 
   h3 {
+    color: #265B5A;
     margin: 10px 0;
   }
 
@@ -60,6 +69,10 @@ export const PostFooter = styled.div`
   display: flex;
   font-size: 14px;
   justify-content: space-between;
+  
+  img {
+    width: 20px;
+  }
 
   .read {
     color: blue;

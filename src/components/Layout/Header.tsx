@@ -14,13 +14,12 @@ export const Header = () => {
 };
 
 const HeaderContainer = styled.div`
-  padding: 10px 20px;
-  border-bottom: 1px solid ${(props) => props.theme.colors.secondary};
+  padding: 20px 20px;
   display: flex;
   column-gap: 20px;
 
   @media ${devices.tablet} {
-    padding: 10px 10vh;
+    padding: 20px 10vh;
   }
 `;
 

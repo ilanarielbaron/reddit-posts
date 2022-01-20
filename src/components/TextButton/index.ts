@@ -10,8 +10,14 @@ export const TextButton = styled.button`
     text-transform: uppercase;
   }
 
-  &:hover {
-    color: ${(props) => props.theme.colors.secondary};
+  &.icon {
+    padding: 10px;
+    border-radius: 4px;
+    color: #878A8C;
+    font-weight: 600;
+    &:hover {
+      background: #E8E8E8;
+    }
   }
 
   &.split {

@@ -12,6 +12,8 @@ import {
   PostInfo,
   PostLayout,
 } from "./styled";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface PostItemProps {
   post: IPost;
@@ -21,23 +23,22 @@ export interface PostItemProps {
 export const PostItem = ({ post, selectPost }: PostItemProps) => {
   const dispatch = useDispatch();
 
-  const onDismiss = () => {
+  const onDismiss = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
     dispatch(dismissPostRequest({ postsToDelete: [post] }));
   };
 
   return (
-    <PostContainer>
-      <PostLayout
-        onClick={() => {
-          selectPost(post);
-          dispatch(readPostRequest({ postToRead: post }));
-        }}
-      >
+    <PostContainer
+      onClick={() => {
+        selectPost(post);
+        dispatch(readPostRequest({ postToRead: post }));
+      }}
+    >
+      <PostLayout>
         <PostInfo>
           <h3>{post.title}</h3>
-          <p>
-            {`Public by ${post.author} - ${post.entryDate} hours ago`}
-          </p>
+          <p>{`Public by ${post.author} - ${post.entryDate} hours ago`}</p>
         </PostInfo>
         <PostImage>
           <img src={post.image} alt="postImage" />
@@ -46,8 +47,13 @@ export const PostItem = ({ post, selectPost }: PostItemProps) => {
       <PostFooter>
         <span>{`${post.commentsCount} comments`}</span>
         {post.isRead && <span className="read">Visited</span>}
-        <TextButton onClick={onDismiss}>Dismiss</TextButton>
+        <TextButton className="icon" onClick={onDismiss}>
+          <FontAwesomeIcon icon={faTrash} size="lg" />{" "}
+          Dismiss
+        </TextButton>
       </PostFooter>
     </PostContainer>
   );
 };
+
+

@@ -44,62 +44,67 @@ export const Home = () => {
   if (loading && posts.length === 0) return <Spinner />;
 
   return (
-    <Container
-      className={
-        splitLayout && !!postSelected ? "split-layout" : "simple-layout"
-      }
-    >
-      <PostList
+    <>
+      <Container
         className={
-          !!postSelected ? (!splitLayout ? "hidden" : "hidden-mobile") : "flex"
+          splitLayout && !!postSelected ? "split-layout" : "simple-layout"
         }
       >
-        {/* Post List with infinite scroll */}
-        <InfiniteScroll
-          hasMoreData={true}
-          isLoading={loading}
-          onBottomHit={onLoadMore}
-          loadOnMount={true}
+        <PostList
+          className={
+            !!postSelected
+              ? !splitLayout
+                ? "hidden"
+                : "hidden-mobile"
+              : "flex"
+          }
         >
-          <TransitionGroup>
-            {posts?.map((post: IPost) => {
-              if (!post.disable) {
-                return (
-                  <CSSTransition
-                    key={`${post.fullname}_${post.author}`}
-                    timeout={300}
-                    classNames="item"
-                  >
-                    <PostItem post={post} selectPost={selectPost} />
-                  </CSSTransition>
-                );
-              }
-            })}
-          </TransitionGroup>
-        </InfiniteScroll>
-        {loading && <Spinner />}
+          {/* Post List with infinite scroll */}
+          <InfiniteScroll
+            hasMoreData={true}
+            isLoading={loading}
+            onBottomHit={onLoadMore}
+            loadOnMount={true}
+          >
+            <TransitionGroup>
+              {posts?.map((post: IPost) => {
+                if (!post.disable) {
+                  return (
+                    <CSSTransition
+                      key={`${post.fullname}_${post.author}`}
+                      timeout={300}
+                      classNames="item"
+                    >
+                      <PostItem post={post} selectPost={selectPost} />
+                    </CSSTransition>
+                  );
+                }
+              })}
+            </TransitionGroup>
+          </InfiniteScroll>
+          {loading && <Spinner />}
+        </PostList>
 
-        {/* Fixed bottom nav */}
-        <BottomNav>
-          <ActionButtons
-            onLoadMore={onLoadMore}
-            splitLayout={splitLayout}
-            setSplitLayout={setSplitLayout}
-            onDismiss={onDismiss}
-          />
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-        </BottomNav>
-      </PostList>
-
-      {/* Full Post displayed only with simple layout */}
-      <CSSTransition
-        timeout={500}
-        classNames="item"
-        in={!!postSelected}
-        unmountOnExit
-      >
-        <FullPost post={postSelected} selectPost={selectPost} />
-      </CSSTransition>
-    </Container>
+        {/* Full Post displayed only with simple layout */}
+        <CSSTransition
+          timeout={500}
+          classNames="item"
+          in={!!postSelected}
+          unmountOnExit
+        >
+          <FullPost post={postSelected} selectPost={selectPost} />
+        </CSSTransition>
+      </Container>
+      {/* Fixed bottom nav */}
+      <BottomNav>
+        <ActionButtons
+          onLoadMore={onLoadMore}
+          splitLayout={splitLayout}
+          setSplitLayout={setSplitLayout}
+          onDismiss={onDismiss}
+        />
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+      </BottomNav>
+    </>
   );
 };

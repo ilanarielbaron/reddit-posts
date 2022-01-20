@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Footer } from "./Footer";
+import styled from "styled-components";
 import { Header } from "./Header";
 
 interface LayoutProps {
@@ -10,8 +10,12 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Header />
-      {children}
-      <Footer />
+      <Body>{children}</Body>
     </>
   );
 };
+
+const Body = styled.div`
+  background: #FAFAFA;
+  padding-top: 20px;
+`
